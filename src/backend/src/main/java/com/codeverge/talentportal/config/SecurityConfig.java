@@ -38,15 +38,17 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+        // Use System.getenv() for Render/Docker environment variables
+        String origins = System.getenv("ALLOWED_ORIGINS");
+        if (origins == null || origins.isEmpty()) {
+            origins = "*"; // Fallback to all for development
+        }
+        
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(java.util.List.of(
-            "http://localhost:5173",
-            "http://127.0.0.1:5173",
-            "http://localhost:5174",
-            "http://127.0.0.1:5174"
-        ));
+        config.setAllowedOriginPatterns(java.util.List.of(origins.split(",")));
         config.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(java.util.List.of("*"));
+        config.setAllowCredentials(true);
         config.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
