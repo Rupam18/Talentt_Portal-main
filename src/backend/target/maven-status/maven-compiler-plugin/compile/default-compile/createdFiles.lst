@@ -7,9 +7,11 @@ com/codeverge/talentportal/controller/TechnicalTestResultController.class
 com/codeverge/talentportal/config/DatabaseInitializer.class
 com/codeverge/talentportal/entity/CodingResult.class
 com/codeverge/talentportal/util/PasswordUtil.class
+com/codeverge/talentportal/config/WebConfig.class
 com/codeverge/talentportal/controller/VerbalQuestionController.class
 com/codeverge/talentportal/TalentPortalApplication.class
 com/codeverge/talentportal/repository/TechnicalTestResultRepository.class
+com/codeverge/talentportal/repository/CodingResultRepository.class
 com/codeverge/talentportal/repository/ViolationRepository.class
 com/codeverge/talentportal/entity/CandidateResult.class
 com/codeverge/talentportal/service/TechnicalQuestionService.class
@@ -20,6 +22,8 @@ com/codeverge/talentportal/entity/CodingQuestion$ProgrammingLanguage.class
 com/codeverge/talentportal/service/CodingQuestionService.class
 com/codeverge/talentportal/entity/Admin.class
 com/codeverge/talentportal/entity/AptitudeQuestion.class
+com/codeverge/talentportal/controller/CodingQuestionManagementController$2.class
+com/codeverge/talentportal/controller/CodeExecutionController.class
 com/codeverge/talentportal/entity/ReasoningQuestion.class
 com/codeverge/talentportal/entity/Student.class
 com/codeverge/talentportal/entity/TechnicalQuestion.class
@@ -33,6 +37,7 @@ com/codeverge/talentportal/dto/OTPVerificationRequest.class
 com/codeverge/talentportal/service/CandidateResultService.class
 com/codeverge/talentportal/repository/VerbalQuestionRepository.class
 com/codeverge/talentportal/controller/CodingQuestionManagementController$1.class
+com/codeverge/talentportal/repository/CodingTestCaseRepository.class
 com/codeverge/talentportal/repository/OTPRepository.class
 com/codeverge/talentportal/controller/AdminController.class
 com/codeverge/talentportal/config/StudentSchemaCompatibilityConfig.class
@@ -43,6 +48,7 @@ com/codeverge/talentportal/dto/OTPRequest.class
 com/codeverge/talentportal/controller/HomeController.class
 com/codeverge/talentportal/service/TechnicalTestResultService.class
 com/codeverge/talentportal/repository/StudentRepository.class
+com/codeverge/talentportal/service/CodingResultService.class
 com/codeverge/talentportal/entity/CodingQuestion.class
 com/codeverge/talentportal/config/AptitudeSchemaCompatibilityConfig.class
 com/codeverge/talentportal/service/EmailService.class
@@ -56,6 +62,7 @@ com/codeverge/talentportal/controller/AptitudeQuestionController.class
 com/codeverge/talentportal/entity/CodingQuestion$DifficultyLevel.class
 com/codeverge/talentportal/util/JwtUtil.class
 com/codeverge/talentportal/controller/TechnicalQuestionController.class
+com/codeverge/talentportal/service/Judge0Service.class
 com/codeverge/talentportal/service/AptitudeQuestionService.class
 com/codeverge/talentportal/config/SecurityConfig.class
 com/codeverge/talentportal/entity/CodingTestSummary.class
@@ -64,6 +71,8 @@ com/codeverge/talentportal/entity/TechnicalTestResult.class
 com/codeverge/talentportal/entity/OTPCode.class
 com/codeverge/talentportal/controller/ReasoningQuestionController.class
 com/codeverge/talentportal/repository/CodingTestSummaryRepository.class
+com/codeverge/talentportal/entity/CodingTestCase.class
 com/codeverge/talentportal/controller/CandidateResultController.class
 com/codeverge/talentportal/service/StudentService.class
 com/codeverge/talentportal/controller/CodingReviewController.class
+com/codeverge/talentportal/controller/CodingQuestionManagementController.class

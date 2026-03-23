@@ -16,7 +16,8 @@ import {
   FaRocket,
   FaAward,
   FaClipboardCheck,
-  FaCode
+  FaCode,
+  FaSignOutAlt
 } from 'react-icons/fa'
 import codevergeLogo from './codeverge.svg'
 import './AllTestsCompleted.css'
@@ -24,9 +25,6 @@ import './AllTestsCompleted.css'
 const AllTestsCompleted = () => {
   const navigate = useNavigate()
 
-  const handleGoToDashboard = () => {
-    window.location.href = 'http://localhost:5173/dashboard'
-  }
 
   const handleLogout = () => {
     localStorage.clear()
@@ -40,10 +38,10 @@ const AllTestsCompleted = () => {
           <Col md={10} lg={8}>
             <Card className="completion-card">
               <Card.Body className="text-center p-5">
-                {/* Main Title */}
-                <h1 className="completion-title mb-3">
-                  Congratulations!
-                </h1>
+                {/* Brand Logo */}
+                <div className="completion-logo-container">
+                  <img src={codevergeLogo} alt="Codeverge Logo" className="completion-logo-svg" />
+                </div>
 
                 {/* Professional Icons Row */}
                 <div className="professional-icons mb-4">
@@ -152,20 +150,12 @@ const AllTestsCompleted = () => {
                 {/* Action Buttons */}
                 <div className="action-buttons">
                   <Button 
-                    variant="primary" 
-                    size="lg" 
-                    onClick={handleGoToDashboard}
-                    className="me-3"
-                  >
-                    <FaUserGraduate className="me-2" />
-                    Go to Dashboard
-                  </Button>
-                  <Button 
-                    variant="outline-secondary" 
+                    variant="none" 
                     onClick={handleLogout}
+                    className="btn-logout-premium"
                   >
-                    <FaRocket className="me-2" />
-                    Logout
+                    <FaSignOutAlt className="me-2" />
+                    Sign Out & Exit
                   </Button>
                 </div>
 

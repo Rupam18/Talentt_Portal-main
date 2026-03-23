@@ -19,6 +19,7 @@ import {
   FaCertificate,
   FaLaptopCode
 } from 'react-icons/fa'
+import codevergeLogo from './codeverge.svg'
 
 import './TechnicalResult.css'
 import './TechnicalResultCodingRound.css'
@@ -111,9 +112,8 @@ function TechnicalResult() {
     return (
       <div className="result-page">
         <div className="result-header">
-          <div className="logo d-flex align-items-center">
-            <span className="logo-icon">{'{cv}'}</span>
-            <span className="logo-text">CODEVERGE</span>
+          <div className="logo-container d-flex align-items-center">
+            <img src={codevergeLogo} alt="Codeverge Logo" className="cv-logo-svg" style={{ height: '35px' }} />
           </div>
         </div>
         <Container className="py-5">
@@ -206,9 +206,8 @@ function TechnicalResult() {
 
       <div className="result-card anim-scale-in">
         {/* LOGO */}
-        <div className="cv-logo anim-fade-in-down">
-          <span className="cv-tag">{"{cv}"}</span>
-          <span className="cv-name">CODEVERGE</span>
+        <div className="cv-logo-container anim-fade-in-down">
+          <img src={codevergeLogo} alt="Codeverge Logo" className="cv-logo-svg" />
         </div>
 
         {/* CELEBRATION ICON */}

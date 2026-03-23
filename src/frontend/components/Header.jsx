@@ -5,12 +5,15 @@ const Header = () => {
   return (
     <Navbar expand="lg" className="navbar-custom">
       <Container>
-        <Navbar.Brand href="#" className="navbar-brand">
-          <img 
-            src="/codeverge.svg" 
-            alt="Codeverge Logo" 
-            className="logo-custom"
-          />
+        <Navbar.Brand href="/" className="navbar-brand">
+          <div className="logo-wrapper">
+            <img 
+              src="/codeverge.svg" 
+              alt="Codeverge Logo" 
+              className="logo-img"
+            />
+            <div className="logo-glow"></div>
+          </div>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

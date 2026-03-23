@@ -8,6 +8,7 @@ import {
   FaArrowLeft,
   FaHourglassHalf
 } from 'react-icons/fa'
+import codevergeLogo from './codeverge.svg'
 import './CodingTestRelaxation.css'
 
 const CodingTestRelaxation = () => {
@@ -73,9 +74,8 @@ const CodingTestRelaxation = () => {
       <div className="premium-card animate-fadeIn">
         
         {/* LOGO */}
-        <div className="brand-header">
-          <span className="brand-tag">{"{cv}"}</span>
-          <span className="brand-name">CODEVERGE</span>
+        <div className="brand-logo-container animate-fadeIn">
+          <img src={codevergeLogo} alt="Codeverge Logo" className="brand-logo-svg" />
         </div>
 
         {/* TITLE */}

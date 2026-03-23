@@ -15,6 +15,7 @@ import {
   FaHourglassHalf,
   FaExclamationTriangle
 } from 'react-icons/fa'
+import codevergeLogo from './codeverge.svg'
 import './ResultPortal.css'
 
 // Professional SVG Circular Progress - Refactored for Dark Theme
@@ -137,6 +138,9 @@ function ResultPortal() {
         
         {/* Header Section */}
         <header className="relative flex flex-col items-center text-center pt-8 pb-4">
+          <div className="mb-6 animate-fadeIn">
+            <img src={codevergeLogo} alt="Codeverge Logo" className="h-10 w-auto filter drop-shadow-[0_0_10px_rgba(250,204,21,0.3)]" />
+          </div>
           <div className="absolute top-0 right-0 hidden md:block">
             <span className={`px-3 py-1 text-xs font-bold rounded-full tracking-wider border ${
               result.pass 

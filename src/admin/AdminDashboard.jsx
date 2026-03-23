@@ -314,6 +314,13 @@ function AdminDashboard() {
         <Tab.Container activeKey={activeTab} onSelect={(k) => setActiveTab(k)}>
           <Row>
             <Col md={3}>
+              <div className="sidebar-logo text-center mb-4">
+                <img 
+                  src="/codeverge.svg" 
+                  alt="Codeverge Logo" 
+                  className="admin-logo-img"
+                />
+              </div>
               <Nav variant="pills" className="flex-column admin-nav">
                 <Nav.Item>
                   <Nav.Link eventKey="overview">

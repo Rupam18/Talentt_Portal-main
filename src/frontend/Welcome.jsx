@@ -106,6 +106,13 @@ const Welcome = () => {
           <Row className="align-items-center min-vh-100">
             <Col lg={6} className="hero-content">
               <div className="hero-text">
+                <div className="hero-logo-container">
+                  <img 
+                    src="/codeverge.svg" 
+                    alt="Codeverge Logo" 
+                    className="hero-logo"
+                  />
+                </div>
                 <h1 className="hero-title">
                   <span style={{ color: '#F4780A' }}>Welcome to</span> <span className="brand-highlight">Codeverge Talent Portal</span>
                 </h1>

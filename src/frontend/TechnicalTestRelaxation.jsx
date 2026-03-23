@@ -11,6 +11,7 @@ import {
   FaHourglassHalf
 } from 'react-icons/fa'
 import { stopProctoring, startProctoring } from './proctoringSession'
+import codevergeLogo from './codeverge.svg'
 import './TechnicalTestRelaxation.css'
 
 const TechnicalTestRelaxation = () => {
@@ -60,9 +61,8 @@ const TechnicalTestRelaxation = () => {
       <div className="relaxation-card">
         
         {/* LOGO */}
-        <div className="cv-logo anim-fade-in-down">
-          <span className="cv-tag">{"{cv}"}</span>
-          <span className="cv-name">CODEVERGE</span>
+        <div className="cv-logo-container anim-fade-in-down">
+          <img src={codevergeLogo} alt="Codeverge Logo" className="cv-logo-svg" />
         </div>
 
         {/* ICON */}

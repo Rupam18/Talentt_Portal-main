@@ -10,6 +10,7 @@ import ViolationModal from './components/ViolationModal'
 import CustomDialog from './components/CustomDialog'
 import './AptitudeTest.css'
 import './AptitudeTestModal.css'
+import { aptitudeQuestions } from './data/questionsData'
 
 const SECTION_TIME_SECONDS = 20 * 60
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5)
@@ -66,29 +67,16 @@ function AptitudeTest() {
     try {
       setLoading(true)
 
-      // Fetch each section from its own dedicated table/endpoint in parallel:
-      // - numerical  → questions table (type=APTITUDE, category=numerical)
-      // - verbal     → verbal_questions table
-      // - reasoning  → reasoning_questions table
-      const [numericalRes, verbalRes, reasoningRes] = await Promise.all([
-        fetch('/api/aptitude-questions/numerical'),
-        fetch('/api/verbal-questions'),
-        fetch('/api/reasoning-questions')
-      ])
+      // Use local questions as they are integrated into the codebase
+      const allQs = aptitudeQuestions || []
+      
+      const numericalQs = allQs.filter(q => q.category === 'numerical').map(transformQuestion)
+      const verbalQs = allQs.filter(q => q.category === 'verbal').map(transformQuestion)
+      const reasoningQs = allQs.filter(q => q.category === 'reasoning').map(transformQuestion)
 
-      const [numericalData, verbalData, reasoningData] = await Promise.all([
-        numericalRes.ok ? numericalRes.json() : { questions: [] },
-        verbalRes.ok   ? verbalRes.json()   : { questions: [] },
-        reasoningRes.ok ? reasoningRes.json() : { questions: [] }
-      ])
+      console.log(`Loaded local questions — numerical: ${numericalQs.length}, verbal: ${verbalQs.length}, reasoning: ${reasoningQs.length}`)
 
-      const numericalQs = (numericalData.questions || []).map(transformQuestion)
-      const verbalQs    = (verbalData.questions   || []).map(transformQuestion)
-      const reasoningQs = (reasoningData.questions || []).map(transformQuestion)
-
-      console.log(`Loaded questions — numerical: ${numericalQs.length}, verbal: ${verbalQs.length}, reasoning: ${reasoningQs.length}`)
-
-      // Build sections directly from fetched questions
+      // Build sections directly from local questions
       const freshSections = [
         { key: 'numerical', title: 'Numerical Ability',  questions: pickRandom(numericalQs, Math.min(20, numericalQs.length)) },
         { key: 'verbal',    title: 'Verbal Ability',     questions: pickRandom(verbalQs,    Math.min(20, verbalQs.length))    },
@@ -100,7 +88,7 @@ function AptitudeTest() {
       // Keep questions state populated for compatibility
       setQuestions([...numericalQs, ...verbalQs, ...reasoningQs])
     } catch (error) {
-      console.error('Error fetching questions:', error)
+      console.error('Error loading local questions:', error)
       setQuestions([])
     } finally {
       setLoading(false)

@@ -8,6 +8,7 @@ import { useProctoring } from '../../hooks/useProctoring';
 import ViolationModal from '../ViolationModal';
 import CustomDialog from '../CustomDialog';
 import { FaPlay, FaPaperPlane, FaSignOutAlt, FaRocket } from 'react-icons/fa';
+import { codingQuestions } from '../../data/questionsData';
 
 const CodingModule = () => {
   const navigate = useNavigate();
@@ -68,14 +69,15 @@ const CodingModule = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('/api/code-execution/coding-question');
-        if (!response.ok) throw new Error('Ready to pick a question? Check your connection.');
-        const data = await response.json();
+        // Use local coding questions integrated into the codebase
+        const data = codingQuestions[0]; // For now, pick the first one or randomize
+        if (!data) throw new Error('No coding questions available.');
+        
         setQuestion(data);
         if (data.solutionCode) setCode(data.solutionCode);
         else setCode(getDefaultTemplate(data.programmingLanguage || 'javascript'));
       } catch (err) {
-        console.error('Error fetching question:', err);
+        console.error('Error loading coding question:', err);
         setError(err.message);
       } finally {
         setLoading(false);

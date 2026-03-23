@@ -17,6 +17,7 @@
 /Users/rupamkumarsarangi/Downloads/Talentt_Portal-main/src/backend/src/main/java/com/codeverge/talentportal/entity/Question.java
 /Users/rupamkumarsarangi/Downloads/Talentt_Portal-main/src/backend/src/main/java/com/codeverge/talentportal/controller/CodingReviewController.java
 /Users/rupamkumarsarangi/Downloads/Talentt_Portal-main/src/backend/src/main/java/com/codeverge/talentportal/repository/AdminRepository.java
+/Users/rupamkumarsarangi/Downloads/Talentt_Portal-main/src/backend/src/main/java/com/codeverge/talentportal/config/WebConfig.java
 /Users/rupamkumarsarangi/Downloads/Talentt_Portal-main/src/backend/src/main/java/com/codeverge/talentportal/service/QuestionService.java
 /Users/rupamkumarsarangi/Downloads/Talentt_Portal-main/src/backend/src/main/java/com/codeverge/talentportal/config/DataInitializationConfig.java
 /Users/rupamkumarsarangi/Downloads/Talentt_Portal-main/src/backend/src/main/java/com/codeverge/talentportal/controller/TechnicalTestResultController.java

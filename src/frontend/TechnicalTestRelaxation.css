@@ -79,26 +79,16 @@
 }
 
 /* Branding */
-.cv-logo {
+.cv-logo-container {
+  margin-bottom: 2rem;
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 1.5rem;
 }
 
-.cv-tag {
-  color: #facc15;
-  font-weight: 800;
-  font-size: 1.5rem;
-  text-shadow: 0 0 15px var(--primary-glow);
-}
-
-.cv-name {
-  color: white;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  font-size: 1rem;
+.cv-logo-svg {
+  height: 45px;
+  width: auto;
+  filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.3));
 }
 
 .celebration-emoji {

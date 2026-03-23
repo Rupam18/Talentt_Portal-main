@@ -65,9 +65,17 @@
 }
 
 /* Branding */
-.cv-logo { display: flex; justify-content: center; align-items: center; gap: 0.6rem; margin-bottom: 2rem; }
-.cv-tag { color: var(--neon-yellow); font-weight: 800; font-size: 1.8rem; text-shadow: 0 0 15px var(--primary-glow); }
-.cv-name { color: white; font-weight: 700; letter-spacing: 0.2em; font-size: 1.2rem; }
+.cv-logo-container {
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.cv-logo-svg {
+  height: 50px;
+  width: auto;
+  filter: drop-shadow(0 0 12px rgba(250, 204, 21, 0.4));
+}
 
 .celebration-icon { font-size: 5rem; margin-bottom: 2rem; display: block; filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)); }
 

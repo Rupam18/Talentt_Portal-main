@@ -91,7 +91,7 @@ const Login = () => {
     <div className="login-wrapper">
       <Container className="login-container">
         <Row className="justify-content-center w-100">
-          <Col md={6} lg={5}>
+          <Col md={8} lg={6} xl={5}>
             <Card className="login-card shadow-lg">
               <Card.Body className="p-5">
                 <div className="text-center mb-4">
@@ -170,20 +170,10 @@ const Login = () => {
                       </div>
                     </Form.Group>
 
-                    <div className="d-flex gap-2">
-                      <Button
-                        variant="outline-secondary"
-                        className="btn-back"
-                        onClick={handleBack}
-                        disabled={loading}
-                      >
-                        <FaArrowLeft className="me-2" />
-                        Back
-                      </Button>
-                      
+                    <div className="d-grid gap-3">
                       <Button
                         type="submit"
-                        className="btn-verify flex-grow-1"
+                        className="btn-login w-100"
                         disabled={loading}
                       >
                         {loading ? (
@@ -197,6 +187,16 @@ const Login = () => {
                             Verify OTP
                           </>
                         )}
+                      </Button>
+
+                      <Button
+                        variant="outline-secondary"
+                        className="btn-back w-100"
+                        onClick={handleBack}
+                        disabled={loading}
+                      >
+                        <FaArrowLeft className="me-2" />
+                        Back to Email
                       </Button>
                     </div>
                   </Form>

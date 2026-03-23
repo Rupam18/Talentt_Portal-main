@@ -58,6 +58,93 @@ public class EmailService {
         }
     }
     
+    public boolean sendAptitudeTestPassEmail(String to, String candidateName, Integer totalMarks) {
+        try {
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+            
+            helper.setFrom("noreply@codeverge.com");
+            helper.setTo(to);
+            helper.setSubject("🎉 Congratulations! You've Passed the Aptitude Round - Codeverge Talent Portal");
+            
+            String emailText = String.format(
+                "<!DOCTYPE html>" +
+                "<html>" +
+                "<head>" +
+                "<meta charset='UTF-8'>" +
+                "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
+                "<title>Congratulations - Codeverge Talent Portal</title>" +
+                "<style>" +
+                "body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f8f9fa; }" +
+                ".container { max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; }" +
+                ".header { background: linear-gradient(135deg, #FF8C00 0%%, #FF4500 100%%); color: white; padding: 40px 30px; text-align: center; }" +
+                ".header h1 { margin: 0; font-size: 28px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }" +
+                ".header .emoji { font-size: 48px; margin-bottom: 15px; display: block; }" +
+                ".content { padding: 40px 30px; }" +
+                ".score-box { background: #fff4e6; border: 2px solid #FF8C00; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }" +
+                ".score-value { font-size: 32px; font-weight: 700; color: #FF8C00; margin-bottom: 5px; }" +
+                ".score-label { font-size: 14px; color: #6c757d; text-transform: uppercase; letter-spacing: 1px; }" +
+                ".congratulations-box { background: linear-gradient(135deg, #28a745 0%%, #20c997 100%%); color: white; padding: 30px; border-radius: 8px; margin: 25px 0; text-align: center; }" +
+                ".congratulations-box h2 { margin: 0 0 15px 0; font-size: 24px; font-weight: 600; }" +
+                ".next-steps { background: #f8f9fa; border-left: 4px solid #FF8C00; padding: 25px; margin: 25px 0; border-radius: 0 8px 8px 0; }" +
+                ".next-steps h3 { color: #FF8C00; margin: 0 0 15px 0; font-size: 20px; font-weight: 600; }" +
+                ".steps-list { list-style: none; padding: 0; margin: 0; }" +
+                ".steps-list li { padding: 12px 0; border-bottom: 1px solid #e9ecef; display: flex; align-items: center; }" +
+                ".steps-list li:last-child { border-bottom: none; }" +
+                ".step-number { background: #FF8C00; color: white; width: 28px; height: 28px; border-radius: 50%%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-right: 15px; flex-shrink: 0; }" +
+                ".footer { background: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e9ecef; }" +
+                ".footer p { margin: 0; color: #6c757d; font-size: 14px; }" +
+                ".btn { display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #FF8C00 0%%, #FF4500 100%%); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin: 20px 0; }" +
+                "@media (max-width: 600px) { .container { margin: 10px; } .header, .content, .footer { padding: 25px 20px; } }" +
+                "</style>" +
+                "</head>" +
+                "<body>" +
+                "<div class='container'>" +
+                "<div class='header'>" +
+                "<span class='emoji'>🏆</span>" +
+                "<h1>Aptitude Round Cleared!</h1>" +
+                "</div>" +
+                "<div class='content'>" +
+                "<p>Dear <strong>%s</strong>,</p>" +
+                "<p>Great news! You have successfully passed the <strong>Aptitude Test</strong> round of the Codeverge Talent Portal selection process.</p>" +
+                "<div class='score-box'>" +
+                "<div class='score-value'>%d</div>" +
+                "<div class='score-label'>Your Total Marks</div>" +
+                "</div>" +
+                "<div class='congratulations-box'>" +
+                "<h2>✅ ELIGIBLE FOR NEXT ROUND</h2>" +
+                "<p>Your performance in the aptitude assessment has qualified you for the second round - the <strong>Technical Test</strong>. This round will evaluate your technical knowledge and core concepts.</p>" +
+                "</div>" +
+                "<div class='next-steps'>" +
+                "<h3>📝 Next Steps:</h3>" +
+                "<ul class='steps-list'>" +
+                "<li><span class='step-number'>1</span> Check your portal dashboard for the Technical Round link</li>" +
+                "<li><span class='step-number'>2</span> Review your technical fundamentals (Java, Python, SQL, etc.)</li>" +
+                "<li><span class='step-number'>3</span> Ensure a stable internet connection for the next assessment</li>" +
+                "</ul>" +
+                "</div>" +
+                "<p>🚀 Keep up the momentum! We look forward to seeing your technical prowess in the next stage.</p>" +
+                "</div>" +
+                "<div class='footer'>" +
+                "<p>Best regards,<br>The Codeverge Talent Portal Team</p>" +
+                "<p style='font-size: 12px; color: #adb5bd; margin-top: 15px;'>This is an automated message. Please do not reply.</p>" +
+                "</div>" +
+                "</div>" +
+                "</body>" +
+                "</html>",
+                candidateName,
+                totalMarks
+            );
+            
+            helper.setText(emailText, true);
+            mailSender.send(mimeMessage);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
     public boolean sendTechnicalTestPassEmail(String to, String candidateName, Double percentageScore, Integer totalCorrect, Integer totalQuestions) {
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();

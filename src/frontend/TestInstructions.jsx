@@ -94,13 +94,13 @@ const TestInstructions = () => {
               <Card.Body className="p-4 p-md-5">
                 {/* Logo */}
                 <div className="text-center mb-4">
-                  <img 
-                    src={codevergeLogo} 
-                    alt="Codeverge Logo" 
+                  <img
+                    src={codevergeLogo}
+                    alt="Codeverge Logo"
                     className="test-instructions-logo"
                   />
                 </div>
-                
+
                 {/* Header */}
                 <div className="text-center mb-5">
                   <div className="test-header">
@@ -168,7 +168,7 @@ const TestInstructions = () => {
                       ))}
                     </ul>
                     <p className="rules-warning">
-                      <strong>Warning:</strong> Any violation of these rules will result in immediate 
+                      <strong>Warning:</strong> Any violation of these rules will result in immediate
                       disqualification and possible blacklisting from future opportunities.
                     </p>
                   </Alert>
@@ -185,8 +185,8 @@ const TestInstructions = () => {
                       onChange={(e) => setAgreedToTerms(e.target.checked)}
                     />
                     <label className="form-check-label" htmlFor="termsCheckbox">
-                      I have read and understood all the instructions. I agree to abide by all 
-                      the rules and confirm that I will not engage in any form of cheating or 
+                      I have read and understood all the instructions. I agree to abide by all
+                      the rules and confirm that I will not engage in any form of cheating or
                       misconduct during the test.
                     </label>
                   </div>
@@ -194,17 +194,17 @@ const TestInstructions = () => {
 
                 {/* Action Buttons */}
                 <div className="action-buttons">
-                  <Button 
-                    variant="outline-secondary" 
+                  <Button
+                    variant="outline-secondary"
                     className="btn-back"
                     onClick={handleBack}
                   >
                     <FaArrowLeft className="me-2" />
                     Back to Login
                   </Button>
-                  
-                  <Button 
-                    variant="success" 
+
+                  <Button
+                    variant="success"
                     className="btn-start-test"
                     onClick={handleStartTest}
                   >
@@ -219,8 +219,8 @@ const TestInstructions = () => {
       </Container>
 
       {/* Start Confirmation Modal */}
-      <Modal 
-        show={showStartModal} 
+      <Modal
+        show={showStartModal}
         onHide={() => setShowStartModal(false)}
         centered
         className="start-test-modal"
@@ -235,7 +235,7 @@ const TestInstructions = () => {
             </div>
             <h4>Are you ready to begin?</h4>
             <p className="modal-description">
-              Once you start the test, the timer will begin immediately. 
+              Once you start the test, the timer will begin immediately.
               You will have <strong>60 minutes</strong> to complete all sections.
             </p>
             <Alert variant="info">

@@ -11,6 +11,7 @@ import CustomDialog from './components/CustomDialog'
 import './TechnicalTest.css'
 import './TechnicalTestModal.css'
 import './TechnicalTestSubmitModal.css'
+import { technicalQuestions } from './data/questionsData'
 
 const SECTION_TIME_SECONDS = 30 * 60
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5)
@@ -60,27 +61,21 @@ function TechnicalTest() {
   const fetchQuestionsFromDB = async () => {
     try {
       setLoading(true)
-      const response = await fetch('/api/technical-questions')
-      if (response.ok) {
-        const data = await response.json()
-        const allQuestions = data.questions || []
-        
-        // Transform database questions to match frontend format
-        const transformedQuestions = allQuestions.map(q => ({
-          q: q.question,
-          o: [q.optionA, q.optionB, q.optionC, q.optionD],
-          a: ['a', 'b', 'c', 'd'].indexOf(q.correctAnswer.toLowerCase()),
-          category: q.category
-        }))
-        
-        console.log('Loaded technical questions from database:', transformedQuestions.length)
-        setQuestions(transformedQuestions)
-      } else {
-        console.error('Failed to fetch technical questions')
-        setQuestions([])
-      }
+      // Use local technical questions integrated into the codebase
+      const allQuestions = technicalQuestions || []
+      
+      // Transform database questions to match frontend format
+      const transformedQuestions = allQuestions.map(q => ({
+        q: q.question,
+        o: [q.optionA, q.optionB, q.optionC, q.optionD],
+        a: ['a', 'b', 'c', 'd'].indexOf(q.correctAnswer.toLowerCase()),
+        category: q.category
+      }))
+      
+      console.log('Loaded local technical questions:', transformedQuestions.length)
+      setQuestions(transformedQuestions)
     } catch (error) {
-      console.error('Error fetching technical questions:', error)
+      console.error('Error loading local technical questions:', error)
       setQuestions([])
     } finally {
       setLoading(false)

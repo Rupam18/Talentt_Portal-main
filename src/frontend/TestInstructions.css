@@ -1,9 +1,22 @@
 /* Test Instructions Page Styles */
 .test-instructions-wrapper {
   min-height: 100vh;
-  background: #ffffff;
+  background: radial-gradient(circle at top right, #1e293b 0%, #0f172a 100%);
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.test-instructions-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 40%;
+  height: 40%;
+  background: radial-gradient(circle, rgba(244, 120, 10, 0.05) 0%, transparent 70%);
+  z-index: 0;
 }
 
 .test-instructions-container {
@@ -14,18 +27,21 @@
 }
 
 .test-instructions-logo {
-  max-width: 200px;
+  width: 150px;
   height: auto;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 0 15px rgba(244, 120, 10, 0.3));
 }
 
 .test-instructions-card {
-  border: none;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #091e3e 0%, #1e3a5f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: white;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  animation: fadeInUp 0.6s ease-out;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
   max-width: 1200px;
 }
@@ -312,6 +328,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -323,19 +340,19 @@
   .test-instructions-container {
     padding: 1rem 0;
   }
-  
+
   .test-instructions-card {
     margin: 0 1rem;
   }
-  
+
   .test-title {
     font-size: 2rem;
   }
-  
+
   .action-buttons {
     flex-direction: column;
   }
-  
+
   .btn-back,
   .btn-start-test {
     width: 100%;

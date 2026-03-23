@@ -18,6 +18,9 @@ public class CandidateResultService {
     private CandidateResultRepository candidateResultRepository;
 
     @Autowired
+    private EmailService emailService;
+
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @PostConstruct
@@ -49,7 +52,22 @@ public class CandidateResultService {
         if (result.getCreatedAt() == null) {
             result.setCreatedAt(java.time.LocalDateTime.now());
         }
-        return candidateResultRepository.save(result);
+        CandidateResult savedResult = candidateResultRepository.save(result);
+        
+        // Send email if candidate passed
+        if (savedResult != null && "PASS".equalsIgnoreCase(savedResult.getFinalResult())) {
+            try {
+                emailService.sendAptitudeTestPassEmail(
+                    savedResult.getEmail(), 
+                    savedResult.getStudentName(), 
+                    savedResult.getTotalMarks()
+                );
+            } catch (Exception e) {
+                System.err.println("Failed to send aptitude pass email: " + e.getMessage());
+            }
+        }
+        
+        return savedResult;
     }
     
     public Optional<CandidateResult> getCandidateResultByEmail(String email) {
