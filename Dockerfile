@@ -16,7 +16,7 @@ COPY src/backend/pom.xml ./
 COPY src/backend/src ./src
 RUN mkdir -p src/main/resources/static
 # Copy frontend build to backend static resources
-COPY --from=frontend-build /app/dist ./src/main/resources/static
+COPY --from=frontend-build /app/src/frontend/dist ./src/main/resources/static
 RUN mvn clean package -DskipTests
 
 # Stage 3: Final Image
