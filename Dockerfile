@@ -2,10 +2,11 @@
 # Stage 1: Build Frontend
 FROM node:20-alpine AS frontend-build
 WORKDIR /app
-COPY package.json vite.config.js tailwind.config.js postcss.config.js index.html ./
-COPY src ./src
-COPY public ./public
+# Copy package file first for layer caching
+COPY package.json ./
 RUN npm install
+# Copy rest of the project (includes src/admin and src/frontend)
+COPY . .
 RUN npm run build
 
 # Stage 2: Build Backend
