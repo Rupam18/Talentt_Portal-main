@@ -1,0 +1,189 @@
+package com.codeverge.talentportal.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.codeverge.talentportal.entity.Question;
+import com.codeverge.talentportal.service.QuestionService;
+
+@RestController
+@RequestMapping({"/api/questions", "/api/aptitude-questions"})
+@CrossOrigin(origins = "*")
+public class AptitudeQuestionController {
+    
+    @Autowired
+    private QuestionService questionService;
+    
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllQuestions() {
+        try {
+            List<Question> questions = questionService.getAptitudeQuestions();
+            return ResponseEntity.ok(Map.of(
+                "message", "Questions retrieved successfully",
+                "questions", questions,
+                "count", questions.size()
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(
+                Map.of("message", "Failed to retrieve questions: " + e.getMessage())
+            );
+        }
+    }
+
+    @GetMapping("/numerical")
+    public ResponseEntity<?> getNumericalQuestions() {
+        try {
+            List<Question> questions = questionService.getAptitudeQuestionsByCategory("numerical");
+            return ResponseEntity.ok(Map.of(
+                "message", "Numerical questions retrieved successfully",
+                "questions", questions,
+                "count", questions.size()
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(
+                Map.of("message", "Failed to retrieve numerical questions: " + e.getMessage())
+            );
+        }
+    }
+
+    @GetMapping("/verbal")
+    public ResponseEntity<?> getVerbalQuestions() {
+        try {
+            List<Question> questions = questionService.getAptitudeQuestionsByCategory("verbal");
+            return ResponseEntity.ok(Map.of(
+                "message", "Verbal questions retrieved successfully",
+                "questions", questions,
+                "count", questions.size()
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(
+                Map.of("message", "Failed to retrieve verbal questions: " + e.getMessage())
+            );
+        }
+    }
+
+    @GetMapping("/reasoning")
+    public ResponseEntity<?> getReasoningQuestions() {
+        try {
+            List<Question> questions = questionService.getAptitudeQuestionsByCategory("reasoning");
+            return ResponseEntity.ok(Map.of(
+                "message", "Reasoning questions retrieved successfully",
+                "questions", questions,
+                "count", questions.size()
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(
+                Map.of("message", "Failed to retrieve reasoning questions: " + e.getMessage())
+            );
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAllQuestionsBase() {
+        return getAllQuestions();
+    }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getQuestionById(@PathVariable Long id) {
+        try {
+            Optional<Question> questionOpt = questionService.getQuestionById(id);
+            if (questionOpt.isPresent()) {
+                return ResponseEntity.ok(Map.of(
+                    "message", "Question retrieved successfully",
+                    "question", questionOpt.get()
+                ));
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(
+                Map.of("message", "Failed to retrieve question: " + e.getMessage())
+            );
+        }
+    }
+    
+    @PostMapping
+    public ResponseEntity<?> createQuestion(@RequestBody Question question) {
+        try {
+            question.setType("APTITUDE");
+            // Validate required fields
+            if (question.getQuestion() == null || question.getQuestion().trim().isEmpty()) {
+                return ResponseEntity.badRequest().body(
+                    Map.of("message", "Question is required")
+                );
+            }
+            if (question.getOptionA() == null || question.getOptionA().trim().isEmpty()) {
+                return ResponseEntity.badRequest().body(
+                    Map.of("message", "Option A is required")
+                );
+            }
+            if (question.getOptionB() == null || question.getOptionB().trim().isEmpty()) {
+                return ResponseEntity.badRequest().body(
+                    Map.of("message", "Option B is required")
+                );
+            }
+            
+            Question savedQuestion = questionService.createQuestion(question);
+            return ResponseEntity.ok(Map.of(
+                "message", "Question created successfully",
+                "question", savedQuestion
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(
+                Map.of("message", "Failed to create question: " + e.getMessage())
+            );
+        }
+    }
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateQuestion(@PathVariable Long id, @RequestBody Question question) {
+        try {
+            question.setType("APTITUDE");
+            Question updatedQuestion = questionService.updateQuestion(id, question);
+            if (updatedQuestion != null) {
+                return ResponseEntity.ok(Map.of(
+                    "message", "Question updated successfully",
+                    "question", updatedQuestion
+                ));
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(
+                Map.of("message", "Failed to update question: " + e.getMessage())
+            );
+        }
+    }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteQuestion(@PathVariable Long id) {
+        try {
+            boolean deleted = questionService.deleteQuestion(id);
+            if (deleted) {
+                return ResponseEntity.ok(Map.of(
+                    "message", "Question deleted successfully"
+                ));
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(
+                Map.of("message", "Failed to delete question: " + e.getMessage())
+            );
+        }
+    }
+}

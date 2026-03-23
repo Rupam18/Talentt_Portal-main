@@ -1,0 +1,19 @@
+/* Result Portal Styles - Cleaned up for Tailwind Refactor */
+
+:root {
+  --cv-bg: #0b1120;
+  --cv-navy: #0f172a;
+  --cv-orange: #F4780A;
+  --cv-success: #10b981;
+  --cv-danger: #ef4444;
+}
+
+/* Animations if needed for Tailwind */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}

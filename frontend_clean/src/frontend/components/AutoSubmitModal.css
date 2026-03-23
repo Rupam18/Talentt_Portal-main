@@ -1,0 +1,127 @@
+/* ============================================================ 
+   AutoSubmitModal.css — Premium Automated Submission Modal
+   ============================================================ */
+
+.autosubmit-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000; /* Higher than ViolationModal if they overlap */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.autosubmit-card {
+  width: 420px;
+  max-width: 90vw;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 
+    0 30px 70px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  animation: autosubmitScaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes autosubmitScaleIn {
+  from {
+    transform: scale(0.9) translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.autosubmit-header {
+  background: linear-gradient(135deg, #ef4444 0%, #ec4899 100%);
+  padding: 18px;
+  text-align: center;
+}
+
+.autosubmit-header-text {
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.autosubmit-body {
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  padding: 32px 28px;
+  text-align: center;
+}
+
+.autosubmit-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #f87171;
+  margin: 0 0 12px;
+}
+
+.autosubmit-desc {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+.autosubmit-status-box {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.autosubmit-status-main {
+  color: #fca5a5;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0 0 4px;
+}
+
+.autosubmit-status-sub {
+  color: #64748b;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.autosubmit-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ef4444 0%, #ec4899 100%);
+  color: white;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+.autosubmit-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.5);
+}
+
+.autosubmit-btn:active {
+  transform: scale(0.98);
+}
+
+.pulse-text {
+  animation: autosubmitPulse 1.8s infinite;
+}
+
+@keyframes autosubmitPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}

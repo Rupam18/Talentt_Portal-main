@@ -1,0 +1,193 @@
+/* ============================================================
+   ViolationModal.css — Premium Proctoring Security Modal
+   ============================================================ */
+
+/* Backdrop overlay */
+.violation-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Modal card */
+.violation-card {
+  width: 440px;
+  max-width: 95vw;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  animation: violationScaleIn 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes violationScaleIn {
+  from {
+    transform: scale(0.82) translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Gradient header strip */
+.violation-header {
+  background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.violation-header-icon {
+  font-size: 1.3rem;
+  animation: violationPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes violationPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.7; transform: scale(1.15); }
+}
+
+.violation-header-text {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+/* Dark glass body */
+.violation-body {
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  padding: 30px 28px 24px;
+  text-align: center;
+}
+
+/* Animated warning ring + icon */
+.violation-icon-ring {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.12);
+  border: 2px solid rgba(245, 158, 11, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  animation: violationRingPulse 2s ease-in-out infinite;
+}
+
+@keyframes violationRingPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.3); }
+  50%       { box-shadow: 0 0 0 12px rgba(245, 158, 11, 0); }
+}
+
+.violation-icon-ring svg,
+.violation-icon-ring span {
+  font-size: 1.9rem;
+  color: #f59e0b;
+}
+
+/* Violation title */
+.violation-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fbbf24;
+  margin: 0 0 10px;
+  letter-spacing: 0.2px;
+}
+
+/* Violation description */
+.violation-desc {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  line-height: 1.65;
+  margin: 0 0 22px;
+}
+
+/* Red attempts alert card */
+.violation-attempts-card {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 18px;
+}
+
+.violation-attempts-count {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f87171;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.violation-attempts-count svg {
+  font-size: 1.1rem;
+}
+
+.violation-attempts-sub {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Bottom note */
+.violation-note {
+  font-size: 0.78rem;
+  color: #475569;
+  margin: 0 0 24px;
+}
+
+/* CTA button */
+.violation-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+  color: #fff;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.35);
+}
+
+.violation-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 28px rgba(239, 68, 68, 0.5);
+}
+
+.violation-btn:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* Violation count badge (for 0 or 1 attempt left — critical) */
+.violation-attempts-card.critical {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.55);
+  animation: violationCardShake 0.4s ease-in-out;
+}
+
+@keyframes violationCardShake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-5px); }
+  60%       { transform: translateX(5px); }
+}
