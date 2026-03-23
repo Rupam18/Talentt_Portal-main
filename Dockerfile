@@ -1,6 +1,6 @@
 # Multi-stage Dockerfile for Talent Portal
 # Stage 1: Build Frontend
-FROM node:18 AS frontend-build
+FROM node:20-alpine AS frontend-build
 WORKDIR /app
 COPY package.json vite.config.js tailwind.config.js postcss.config.js index.html ./
 COPY src/frontend ./src/frontend
