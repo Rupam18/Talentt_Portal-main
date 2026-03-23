@@ -3,7 +3,7 @@
 FROM node:20-alpine AS frontend-build
 WORKDIR /app
 COPY package.json vite.config.js tailwind.config.js postcss.config.js index.html ./
-COPY src/frontend ./src/frontend
+COPY src ./src
 COPY public ./public
 RUN npm install
 RUN npm run build
