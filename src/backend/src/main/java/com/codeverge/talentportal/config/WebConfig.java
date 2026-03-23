@@ -1,19 +1,23 @@
 package com.codeverge.talentportal.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
+    @Value("${spring.web.cors.allowed-origins:*}")
+    private String allowedOrigins;
+
     @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        // Map all non-API paths to index.html for React SPA
-        // This ensures that refreshing the page on a React route doesn't return 404
-        registry.addViewController("/{path:[^\\.]*}")
-                .setViewName("forward:/index.html");
-        registry.addViewController("/**/{path:[^\\.]*}")
-                .setViewName("forward:/index.html");
+    public void addCorsMappings(CorsRegistry registry) {
+        // Explicit CORS config for API endpoints
+        registry.addMapping("/api/**")
+                .allowedOriginPatterns(allowedOrigins.split(","))
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }

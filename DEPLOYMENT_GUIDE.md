@@ -69,6 +69,36 @@ For production, ensure these are configured:
 
 ---
 
+## 🏗 Strategy 3: Render Blueprint (One-Click)
+
+The [render.yaml](file:///Users/rupamkumarsarangi/Downloads/Talentt_Portal-main/render.yaml) file allows for automated setup.
+
+1. Go to **Render Dashboard** -> **Blueprints**.
+2. Connect your repository.
+3. Render will automatically provision:
+   - **PostgreSQL Database**
+   - **Web Service** (using the Dockerfile)
+
+---
+
+## 🛠 Troubleshooting & Optimization
+
+If you encounter **"Could not resolve entry module"** or other persistent build errors:
+
+1. **Clean Rebuild**: Force Docker to ignore cached layers:
+   ```bash
+   docker build --no-cache -t talent-portal .
+   ```
+
+2. **System Prune**: Remove unused Docker data if issues persist:
+   ```bash
+   docker system prune -a
+   ```
+
+3. **Verify Configuration**: The current `monaco-config.js` is optimized for Vite 7 production. Ensure only one version exists in your `src/` directory.
+
+---
+
 ## 💡 Important Notes
-- **SPA Routing**: The backend is configured to serve `index.html` for any unknown routes, ensuring React Router works correctly on page refresh.
+- **SPA Routing**: The backend uses `FrontendController.java` to serve `index.html` for React Router paths, ensuring refresh works correctly.
 - **Port**: The default port is `8081`. Change it via `SERVER_PORT` env var if needed.
