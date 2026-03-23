@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: talent-portal
+    runtime: docker
+    plan: free # Change to 'starter' for better performance
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: talent-db
+          property: jdbcInternalUrl
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: talent-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: talent-db
+          property: password
+      - key: SPRING_MAIL_USERNAME
+        sync: false # Set in Render Dashboard
+      - key: SPRING_MAIL_PASSWORD
+        sync: false # Set in Render Dashboard
+      - key: ALLOWED_ORIGINS
+        value: "*" # Change this to your final .onrender.com URL later
+
+databases:
+  - name: talent-db
+    plan: free
+    databaseName: talentaltdb
+    user: talentuser
