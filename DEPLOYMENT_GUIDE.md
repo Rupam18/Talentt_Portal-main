@@ -81,6 +81,23 @@ The [render.yaml](file:///Users/rupamkumarsarangi/Downloads/Talentt_Portal-main/
 
 ---
 
+## 🎨 Strategy 4: Split Deployment (Vercel + Render)
+
+Best for high-performance frontend delivery.
+
+### 1. Frontend on Vercel
+- **Root Directory**: Project Root (recommend using the main `src/frontend` folder).
+- **Build Command**: `npm run build`
+- **Output Directory**: `src/frontend/dist` (as configured in your `vite.config.js`).
+- **Frontend URL**: Note this down (e.g., `https://talent-portal.vercel.app`).
+- **vercel.json**: Dedicated [vercel.json](file:///Users/rupamkumarsarangi/Downloads/Talentt_Portal-main/vercel.json) is provided for easy mapping.
+
+### 2. Backend on Render
+- Use the **Web Service** option.
+- **Environment Variable**: Set `ALLOWED_ORIGINS` to your Vercel URL.
+
+---
+
 ## 🛠 Troubleshooting & Optimization
 
 If you encounter **"Could not resolve entry module"** or other persistent build errors:
