@@ -1,16 +1,13 @@
 import * as monaco from "monaco-editor";
 
+import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
+import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
+
 self.MonacoEnvironment = {
   getWorker(_, label) {
     if (label === "json") {
-      return new Worker(
-        new URL("monaco-editor/esm/vs/language/json/json.worker", import.meta.url),
-        { type: "module" }
-      );
+      return new jsonWorker();
     }
-    return new Worker(
-      new URL("monaco-editor/esm/vs/editor/editor.worker", import.meta.url),
-      { type: "module" }
-    );
+    return new editorWorker();
   },
 };
